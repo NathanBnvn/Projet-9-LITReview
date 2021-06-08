@@ -1,0 +1,35 @@
+{% extends '../base.html' %}
+{% block registration %}
+
+<!--   {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %} -->
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+      <p>Inscrivez-vous maintenant</p>
+      <input type="button" value="S'inscrire">
+    </table>
+    <table>
+      <p>Connectez-vous</p>
+      <tr>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="Se connecter" />
+  </form>
+
+{% endblock %}
