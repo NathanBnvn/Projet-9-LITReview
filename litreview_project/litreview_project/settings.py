@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'flux.apps.FluxConfig',
+    'feed.apps.FeedConfig',
     'posts.apps.PostsConfig',
     'subscriptions.apps.SubscriptionsConfig',
     'django.contrib.admin',
@@ -127,3 +127,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Manage redirection if user not log or after login
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = '/feed'
+
+# Authentication backends
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
+   

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,12 +7,13 @@
 	<body>
 		<header id="head">
 			<h2>LITReview</h2>
+			{% block navigation %}{% endblock %}
 		</header>
 		
 		<!-- Comentaire-->
 		<div>
-			{% block registration %}{% endblock %} 
+			{% block login %}{% endblock %}
+			{% block register %}{% endblock %}
 		</div>
 	</body>
 </html>
-
