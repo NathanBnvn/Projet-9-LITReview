@@ -1,9 +1,9 @@
-{% extends '../base.html' %}
+{% extends './base.html' %}
 {% block navigation %}
-	<ul>
-		<li><a href="{% url 'feed' %}"></a>Flux</li>
-		<li><a href="{% url 'posts' %}"></a>Posts</li>
-		<li><a href="{% url 'subscriptions' %}"></a>Abonnements</li>
-		<li><a href="{% url 'logout' %}"></a>Se déconnecter</li>
-	</ul>
+<ul class="navigation-bar">
+	<li><a href="{% url 'feed' %}">Flux</a></li>
+	<li><a href="{% url 'posts' %}">Posts</a></li>
+	<li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
+	<li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+</ul>
 {% endblock %}

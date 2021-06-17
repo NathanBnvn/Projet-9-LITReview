@@ -1,0 +1,29 @@
+{% extends '../navigation.html' %}
+{% block subscriptions %}
+
+<div class="search-container">
+    <form action="" method=POST>
+    	{% csrf_token %}
+      <input type="text" placeholder="Nom d'utilisateur" name="search">
+      <button type="submit">Envoyer</button>
+    </form>
+</div>
+
+<h3>Abonnements</h3>
+<table class="user-follows" id="following">
+	<tr>
+		<th></th>
+		<th><button>se désabonner</button></th>
+	</tr>
+	
+</table>
+
+<h3>Abonnés</h3>
+<table class="user-follows" id="follower">
+	<tr>
+		<th></th>
+	</tr>
+	
+</table>
+
+{% endblock %}
