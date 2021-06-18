@@ -7,16 +7,16 @@ from feed.models import UserFollow
 
 @login_required
 def subscriptions(request):
-	user = request.user
-	# call user.following and user.followed_by
-	fol = UserFollow.objects.select_related('user').get()	
-	print(fol)
+	user_follow = UserFollow.objects.select_related('followed_user').all()
+	#for subscriber in user_follow:
+	#	followers = subscriber.followed_user
+	#	followings = subscriber.user
 	search(request)
-	return render(request, 'subscriptions/subscriptions.html')
+	return render(request, 'subscriptions/subscriptions.html', {'user_follow':user_follow})
 
 def search(request):
 	if request.method == 'POST':
 		query = request.POST.get('search')
-		requested_user = User.objects.filter(username__icontains=query)
-		print(requested_user)
-	#render(request, {'requested_user': requested_user})
+		requested_users = User.objects.filter(username__icontains=query)
+		print(requested_users)
+		#return render(request, 'subscriptions/result.html', {'requested_users': requested_users})

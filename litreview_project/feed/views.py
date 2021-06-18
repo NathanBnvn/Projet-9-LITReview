@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.db.models import CharField, Value
 from django.contrib.auth.decorators import login_required
 from .models import Review, Ticket, UserFollow
+from .forms import TicketForm, ReviewForm
 
 # Create your views here.
 
@@ -28,8 +29,10 @@ def feed(request):
 
 @login_required
 def create_review(request):
-	return render(request, 'feed/create_review.html')
+	form = ReviewForm
+	return render(request, 'feed/create_review.html', {'form': form})
 
 @login_required
-def ask_review(request):
-	return render(request, 'feed/ask_review.html')
+def create_ticket(request):
+	form = TicketForm
+	return render(request, 'feed/create_ticket.html', {'form': form})

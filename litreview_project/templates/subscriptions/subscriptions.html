@@ -11,19 +11,21 @@
 
 <h3>Abonnements</h3>
 <table class="user-follows" id="following">
-	<tr>
-		<th></th>
-		<th><button>se désabonner</button></th>
-	</tr>
-	
+	{% for subscriber in user_follow %}
+		<tr>
+			<th>{{ subscriber.user }}</th>
+			<th><button>se désabonner</button></th>
+		</tr>
+	{% endfor %}
 </table>
 
 <h3>Abonnés</h3>
 <table class="user-follows" id="follower">
-	<tr>
-		<th></th>
-	</tr>
-	
+	{% for subscriber in user_follow %}
+		<tr>
+			<th>{{ subscriber.followed_user }}</th>
+		</tr>
+	{% endfor %}
 </table>
 
 {% endblock %}
