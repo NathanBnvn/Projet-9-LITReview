@@ -1,0 +1,22 @@
+{% extends '../navigation.html' %}
+
+{% block posts %}
+<table>
+	{% for post in posts %}
+	<div>
+		{{post.ticket}}
+		{% if post.user == request.user %}
+		<p>vous avez publié</p>
+		{% else %}
+		<p>{{post.user}}<br>
+		{% endif %}
+		{{post.time_created}}<br>
+		{{post.title}}<br>
+		{{post.description}}</p>
+		<img src="{{post.image}}">
+		<button onclick="window.location='{% url 'update' %}'">Modifier</button>
+		<button>Supprimer</button>
+	<div>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -1,7 +1,23 @@
-<!-- {% extends './subscriptions.html' %}
+{% extends '../navigation.html' %}
 
 {% block result %}
-	{% for user in requested_users %}
-	{{user}}
-{% endfor %}
-{% endblock%} -->
+	{% if requested_users.exists %}
+	<table class="requested_users">
+		<tr>
+			<th>utilisateur</th>
+			<th>nombre de critique</th>
+			<th>nombre de ticket</th>
+		</tr>
+		{% for user in requested_users %}
+			<tr>
+	 			<td>{{ user }}</td>
+	 			<td></td>
+	 			<td></td>
+				<td><button>s'abonner</button></td>
+			</tr>
+	 	{% endfor %}
+	 </table>
+	{% else %}
+		<p>Personne ne correspond à votre recherche</p>
+	{% endif %}
+{% endblock%}

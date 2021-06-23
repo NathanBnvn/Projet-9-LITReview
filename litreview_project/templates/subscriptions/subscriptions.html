@@ -2,7 +2,7 @@
 {% block subscriptions %}
 
 <div class="search-container">
-    <form action="" method=POST>
+    <form action="{% url 'search' %}" method=POST>
     	{% csrf_token %}
       <input type="text" placeholder="Nom d'utilisateur" name="search">
       <button type="submit">Envoyer</button>
@@ -10,22 +10,33 @@
 </div>
 
 <h3>Abonnements</h3>
-<table class="user-follows" id="following">
-	{% for subscriber in user_follow %}
-		<tr>
-			<th>{{ subscriber.user }}</th>
-			<th><button>se désabonner</button></th>
-		</tr>
-	{% endfor %}
-</table>
+
+	{% if followings.exists %}
+		<table class="user-follows" id="following">
+	 	{% for following in followings %}
+			<tr>
+	 			<th>{{ following.user }}</th>			
+				<th><button>se désabonner</button></th>
+			</tr>
+	 	{% endfor %}
+	 	</table>
+	{% else %}
+	 	<p>Vous ne suivez personne pour le moment</p>
+	{% endif %}
+
 
 <h3>Abonnés</h3>
-<table class="user-follows" id="follower">
-	{% for subscriber in user_follow %}
-		<tr>
-			<th>{{ subscriber.followed_user }}</th>
-		</tr>
-	{% endfor %}
-</table>
+	{% if followers.exists %}
+		<table class="user-follows" id="follower">
+		{% for follower in followers %}
+			<tr>
+				<th>{{ follower.followed_user }}</th>
+			</tr>
+ 		{% endfor %}
+ 		</table>
+ 	{% else %}
+ 		<p>Vous n'avez pas encore d'abonnés</p>
+ 	{% endif %}
+
 
 {% endblock %}
