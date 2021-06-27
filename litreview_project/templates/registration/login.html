@@ -14,18 +14,19 @@
     {% endif %}
   {% endif %} -->
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <p>Inscrivez-vous maintenant</p>
-      <button onclick="window.location='register'">S'inscrire</button> 
-    </table>
-    <table>
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <table>
+    <p>Inscrivez-vous maintenant</p>
+    <button onclick="window.location='register'">S'inscrire</button> 
+  </table>
+  
+  <table>
     <p>Connectez-vous</p>
-    {{ form.as_table }}
-    </table>
-    <br>
+      {{ form.as_table }}
+  </table>
+  <br>
     <input type="submit" value="Se connecter" name="Connect"/>
-  </form>
+</form>
 
 {% endblock %}

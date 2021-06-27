@@ -2,6 +2,7 @@
 {% block subscriptions %}
 
 <div class="search-container">
+		<h4>Suivre d'autres utilisateurs</h4>
     <form action="{% url 'search' %}" method=POST>
     	{% csrf_token %}
       <input type="text" placeholder="Nom d'utilisateur" name="search">
@@ -9,14 +10,16 @@
     </form>
 </div>
 
-<h3>Abonnements</h3>
+<h4>Abonnements</h4>
 
 	{% if followings.exists %}
 		<table class="user-follows" id="following">
 	 	{% for following in followings %}
 			<tr>
 	 			<th>{{ following.user }}</th>			
-				<th><button>se désabonner</button></th>
+				<th>
+					<button type="button" onclick="location.href='{% url 'unsubscribe' following.id %}'">se désabonner</button>
+				</th>
 			</tr>
 	 	{% endfor %}
 	 	</table>
@@ -25,7 +28,7 @@
 	{% endif %}
 
 
-<h3>Abonnés</h3>
+<h4>Abonnés</h4>
 	{% if followers.exists %}
 		<table class="user-follows" id="follower">
 		{% for follower in followers %}

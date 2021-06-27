@@ -1,13 +1,17 @@
 {% extends '../navigation.html' %}
 {% block feed %}
-<!-- 
-{% for post in posts %}
-    {% if post.content_type == 'TICKET' %}
-        {% include 'ticket_snippet.html' %}
-    {% elif post.content_type == 'REVIEW' %}
-        {% include 'review_snippet.html' %}
-    {% endif %}
-{% endfor %} -->
+ 
 <button onclick="window.location='creer-ticket'">Demander une critique</button> 
 <button onclick="window.location='creer-critique'">Créer une critique</button> 
+
+{% for post in posts %}
+    {% if post.content_type == 'TICKET' %}
+        {% include 'snippet/ticket_snippet.html' %}
+    {% elif post.content_type == 'REVIEW' %}
+        {% include 'snippet/review_snippet.html' %}
+    {% endif %}
+{% endfor %}
+
+<p>{{ message }}</p>
+
 {% endblock %}

@@ -10,27 +10,19 @@ from .forms import TicketForm, ReviewForm
 
 @login_required
 def feed(request):
-	review = Review.objects.filter(user=request.user)
-	ticket = Ticket.objects.filter(user=request.user)
-
-	#if ticket.exists(): 
-	return render(request, 'feed/feed.html')
-	#reviews = get_users_viewable_reviews(request.user)  
-    # returns queryset of reviews
-    #reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-
-    #tickets = get_users_viewable_tickets(request.user) 
-    # returns queryset of tickets
-    #tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-
-    # combine and sort the two types of posts
-    #posts = sorted(
-    #    chain(reviews, tickets), 
-    #    key=lambda post: post.time_created, 
-    #    reverse=True
-    #)
-    #return render(request, 'feed/feed.html', context={'posts': posts})
-
+	followings = UserFollow.objects.filter(followed_user=request.user)
+	for following in followings:
+		tickets = Ticket.objects.filter(user=following.user)
+		tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+		reviews = Review.objects.filter(user=following.user)
+		reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+	
+		if tickets.exists() or reviews.exists(): 
+			posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
+			return render(request, 'feed/feed.html', {'posts': posts})
+	else :
+		message = "Il n'y a pas encore de critiques ou de tickets dans votre flux."
+		return render(request, 'feed/feed.html', {'message': message})
 
 @login_required
 def create_ticket(request):
@@ -48,19 +40,15 @@ def create_ticket(request):
 @login_required
 def create_review(request):
 	if request.method == 'POST':
-		review_form = TicketForm(request.POST)
-		ticket_form = ReviewForm(request.POST, request.FILES)
+		review_form = ReviewForm(request.POST)
+		ticket_form = TicketForm(request.POST, request.FILES)
 		if review_form.is_valid() and ticket_form.is_valid() :
 			review = review_form.save(commit=False)
 			ticket = ticket_form.save(commit=False)
-			review.user = request.user
 			ticket.user = request.user
-			
-			review.ticket = ticket #il faut associé l'id de instance review.ticket au ticket 
-			
-			# les forms sont sujets à la casse, ils changent de place seules
-
 			ticket.save()
+			review.user = request.user
+			review.ticket = ticket
 			review.save()
 	else:
 		review_form = ReviewForm()

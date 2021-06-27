@@ -1,23 +1,27 @@
 {% extends '../navigation.html' %}
 
 {% block result %}
-	{% if requested_users.exists %}
+	{% if requested_data %}
 	<table class="requested_users">
 		<tr>
 			<th>utilisateur</th>
-			<th>nombre de critique</th>
 			<th>nombre de ticket</th>
+			<th>nombre de critique</th>
 		</tr>
-		{% for user in requested_users %}
+		{% for user in requested_data %}
 			<tr>
-	 			<td>{{ user }}</td>
-	 			<td></td>
-	 			<td></td>
-				<td><button>s'abonner</button></td>
+	 			<td>{{ user.0 }}</td>
+	 			<td>{{ user.1 }}</td>
+	 			<td>{{ user.2 }}</td>
+	 			{% if user.3.exists %}
+	 			<td><p>abonné</p></td>
+	 			{% else %}
+				<td><button type="button" onclick="location.href='{% url 'subscribe' user.0 %}'">s'abonner</button></td>
+				{% endif %}
 			</tr>
 	 	{% endfor %}
 	 </table>
 	{% else %}
-		<p>Personne ne correspond à votre recherche</p>
+		<p>{{ message }}</p>
 	{% endif %}
 {% endblock%}

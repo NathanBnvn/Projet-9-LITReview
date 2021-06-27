@@ -1,0 +1,10 @@
+{% extends '../base.html' %}
+{% block logout %}
+
+<p>Vous êtes bien déconnecté.
+	<br>Comme l'a écrit Lamartine "Un seul être vous manque et tout est dépeuplé",
+alors revenez vite.</p> 
+
+<button onclick="window.location='{% url 'login' %}'">Se reconnecter</button> 
+
+{% endblock %}

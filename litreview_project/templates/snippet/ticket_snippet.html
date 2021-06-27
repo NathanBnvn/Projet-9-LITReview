@@ -1,3 +1,28 @@
 <div class='ticket'>
-	
+	<table>
+	{% if post_view is True %}
+		{% if post.user == request.user %}
+			<p>vous avez publié un ticket</p>
+		{% else %}
+			<p>Ticket - {{ post.user }}</p>
+		{% endif %}
+		<p>{{post.time_created}}</p>
+		<p>{{ post.title }}</p>
+		<p>{{ post.description }}</p>
+		<img src="{{ post.image }}">
+		<button name="update_ticket_button" onclick="window.location='{% url 'update' %}'">Modifier</button>
+		<button name="delete_ticket_button" onclick="window.location='{% url 'erase' post.id %}'">Supprimer</button>
+	{% else %}
+		{% if post.user == request.user %}
+			<p>vous avez demandé une critique</p>
+		{% else %}
+			<p>{{ post.user }} a demandé une critique</p>
+		{% endif %}
+		<p>{{ post.title }} <br>
+		{{ post.description }}</p>
+		<img src="{{ post.image }}">
+		<!-- si une critique en reponse ne pas faire apparaitre le bouton -->
+		<button name="create_review_button" onclick="window.location='{% url 'create-review' %}'">Créer une critique</button>
+	{% endif %}
+	</table>
 </div>

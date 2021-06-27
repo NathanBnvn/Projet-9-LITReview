@@ -1,11 +1,27 @@
 
 <div class='review'>
-	<text>author actions</text>
-	<text>date time</text>
-
-	<h3>titre</h3>
-
-	<text>description</text>
-
-	<img>
+	<table>
+	<p>{{post.time_created}}</p>
+	{% if post.user == request.user %}
+		<p>vous avez publié une critique</p>
+	{% else %}
+		<p>Critique - {{ post.user }}</p>
+	{% endif %}
+	<p>{{ post.headline}} - {{ post.rating }}</p>
+	<p>{{ post.body }}</p>
+	{% if post_view == True %}
+		<button name="update_review_button" onclick="window.location='{% url 'update' %}'">Modifier</button>
+		<button name="delete_review_button" onclick="window.location='{% url 'erase' post.id %}'">Supprimer</button>
+	{% endif %}
+	{% if post.ticket %}
+		<p>{{post.ticket.time_created}}</p>
+		{% if post.ticket.user == request.user %}
+			<p>Ticket - Vous</p>
+		{% else %}
+			<p>Ticket - {{ post.ticket.user }}</p>
+		{% endif %}
+		<p>{{ post.ticket.title }}</p>
+		<img src="{{ post.ticket.image }}">
+	{% endif %}
+	</table>
 </div>
