@@ -16,7 +16,6 @@ def feed(request):
 		tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 		reviews = Review.objects.filter(user=following.user)
 		reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-	
 		if tickets.exists() or reviews.exists(): 
 			posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
 			return render(request, 'feed/feed.html', {'posts': posts})

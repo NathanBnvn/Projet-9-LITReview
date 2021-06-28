@@ -10,6 +10,7 @@
     {% elif post.content_type == 'REVIEW' %}
         {% include 'snippet/review_snippet.html' %}
     {% endif %}
+    <button name="create_review_button" onclick="window.location='{% url 'create-review' %}'">Créer une critique</button>
 {% endfor %}
 
 <p>{{ message }}</p>

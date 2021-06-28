@@ -1,0 +1,21 @@
+{% extends '../navigation.html' %}
+
+{% block update %}
+<table>
+	{% if review_view == True %}
+		<h3>Modifier votre critique</h3>
+		<p>Vous êtes en train de poster en réponse à</p>
+		<p>{{ticket.user}} a demandé une critique</p>
+		<p>{{ticket.title}}</p>
+		<p>{{ticket.description}}</p>
+		<p><img src="{{ticket.img}}"></p>
+	{% else %}
+		<h3>Modifier votre ticket</h3>
+	{% endif %}
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_table}}
+		<td><input type="submit" value="Envoyer"></td>
+	</form>
+</table>
+{% endblock %}
