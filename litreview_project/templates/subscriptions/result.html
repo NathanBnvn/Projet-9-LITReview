@@ -13,7 +13,7 @@
 	 			<td>{{ user.0 }}</td>
 	 			<td>{{ user.1 }}</td>
 	 			<td>{{ user.2 }}</td>
-	 			{% if user.3.exists %}
+	 			{% if user.3 %}
 	 			<td><p>abonné</p></td>
 	 			{% else %}
 				<td><button type="button" onclick="location.href='{% url 'subscribe' user.0 %}'">s'abonner</button></td>

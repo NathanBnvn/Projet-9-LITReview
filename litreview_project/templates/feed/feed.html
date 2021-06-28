@@ -7,10 +7,17 @@
 {% for post in posts %}
     {% if post.content_type == 'TICKET' %}
         {% include 'snippet/ticket_snippet.html' %}
+        {% for tickets in resolve_ticket_id %}
+            {% for ticket in tickets %}
+                {% if ticket.id != post.id %}
+                <button name="create_review_button" onclick="window.location='{% url 'respond-review' post.id %}'">Créer une critique</button>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        
     {% elif post.content_type == 'REVIEW' %}
         {% include 'snippet/review_snippet.html' %}
     {% endif %}
-    <button name="create_review_button" onclick="window.location='{% url 'create-review' %}'">Créer une critique</button>
 {% endfor %}
 
 <p>{{ message }}</p>

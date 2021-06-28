@@ -20,10 +20,10 @@ def search(request):
 		query = request.POST.get('search')
 		requested_users = User.objects.filter(username__icontains=query).exclude(username=request.user)
 		if requested_users.exists():
-			tickets = [Ticket.objects.filter(user=user).count() for user in requested_users]
-			reviews = [Review.objects.filter(user=user).count() for user in requested_users]
+			tickets_count = [Ticket.objects.filter(user=user).count() for user in requested_users]
+			reviews_count = [Review.objects.filter(user=user).count() for user in requested_users]
 			following = [UserFollow.objects.filter(followed_user=request.user).filter(user=user) for user in requested_users]
-			requested_data = list(zip(requested_users, tickets, reviews, following))
+			requested_data = list(zip(requested_users, tickets_count, reviews_count, following))
 			return render(request, 'subscriptions/result.html', {'requested_data': requested_data})
 		else:
 			message = "Personne ne correspond à votre recherche"
