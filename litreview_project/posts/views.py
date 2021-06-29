@@ -20,7 +20,7 @@ def show_posts(request):
 def update_ticket(request, post_id):
 	review_view = False
 	ticket = Ticket.objects.get(pk=post_id)
-	form = TicketForm(request.POST or None, instance=ticket)
+	form = TicketForm(request.POST or None, request.FILES or None, instance=ticket)
 	if form.is_valid():
 		form.save()
 		return redirect('posts')

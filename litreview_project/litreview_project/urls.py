@@ -24,7 +24,4 @@ urlpatterns = [
     path('flux/', include('feed.urls')),
     path('posts/', include('posts.urls')),
     path('abonnements/', include('subscriptions.urls'))
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

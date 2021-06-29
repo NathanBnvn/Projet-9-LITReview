@@ -12,7 +12,7 @@
 	{% else %}
 		<h3>Modifier votre ticket</h3>
 	{% endif %}
-	<form method="POST">
+	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{form.as_table}}
 		<td><input type="submit" value="Envoyer"></td>

@@ -21,7 +21,7 @@
 
 		<p>{{ post.ticket.title }}</p>
 		<p>{{ post.ticket.description }}</p>
-		<img src="{{ post.ticket.image }}"><br>
+		<img src="{{ MEDIA_URL }}{{ post.ticket.image }}"><br>
 	{% endif %}
 
 	</table>

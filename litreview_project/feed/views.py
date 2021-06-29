@@ -1,5 +1,5 @@
 from itertools import chain
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import CharField, Value, Q
 from django.contrib.auth.decorators import login_required
 from .models import Review, Ticket, UserFollow
@@ -32,6 +32,7 @@ def create_ticket(request):
 			ticket = form.save(commit=False)
 			ticket.user = request.user
 			ticket.save()
+			return redirect('feed')
 	else:
 		form = TicketForm()
 	return render(request, 'feed/create_ticket.html', {'form': form})
@@ -50,6 +51,7 @@ def create_review(request):
 			review.user = request.user
 			review.ticket = ticket
 			review.save()
+			return redirect('feed')
 	else:
 		review_form = ReviewForm()
 		ticket_form = TicketForm()	
@@ -66,6 +68,7 @@ def respond_review(request, post_id):
 			review.ticket = tickets[0].id
 			review.user = request.user
 			review.save()
+			return redirect('feed')
 	else:
 		form = ReviewForm()
 	return render(request, 'feed/resolve_review.html', {'form':form, 'tickets':tickets})
