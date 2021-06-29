@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 <div class='review'>
 	<table>
@@ -9,7 +15,22 @@
 		<p>{{ post.user }} a publié une critique</p>
 	{% endif %}
 	
-	<p>{{ post.headline}} - {{ post.rating }}</p>
+	<p>{{ post.headline}} - 
+		{% for n in range %}
+			{% if n < post.rating %}
+				<span class="fa fa-star checked"></span>
+			{% else %}
+				<span class="fa fa-star"></span>
+			{% endif %}
+		{% endfor %}
+	</p>
+	<!-- A mettre dans un CSS -->
+	<style>
+	.checked {
+  		color: orange;
+		}
+	</style>
+
 	<p>{{ post.body }}</p>
 	
 	{% if post.ticket %}

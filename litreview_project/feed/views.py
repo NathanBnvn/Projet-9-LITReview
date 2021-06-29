@@ -18,7 +18,7 @@ def feed(request):
 		if tickets.exists() or reviews.exists(): 
 			resolve_ticket_id = [Ticket.objects.filter(id=review.ticket.id) for review in reviews]
 			posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
-			return render(request, 'feed/feed.html', {'posts': posts, 'resolve_ticket_id': resolve_ticket_id})
+			return render(request, 'feed/feed.html', {'posts': posts, 'resolve_ticket_id': resolve_ticket_id, 'range': range(5)})
 	else :
 		message = "Il n'y a pas encore de critiques ou de tickets dans votre flux."
 		return render(request, 'feed/feed.html', {'message': message,})
