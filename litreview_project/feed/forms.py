@@ -7,9 +7,9 @@ class ReviewForm(forms.ModelForm):
 		model = Review
 		fields = ['headline','rating','body']
 		labels = {
-			'headline': ('titre'),
-			'rating': ('note'),
-			'body': ('commentaire'),
+			'headline': ('Titre'),
+			'rating': ('Note'),
+			'body': ('Commentaire'),
 		}
 		#widgets = {
 		#	'rating': forms.RadioSelect()

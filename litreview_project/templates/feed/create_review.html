@@ -1,15 +1,31 @@
 {% extends '../navigation.html' %}
 {% block feed %}
 
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
+
 <form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<table>
-		<td><h4>Livre/Article</h4></td>
-			{{ticket_form.as_table}}
+	<table class="review-form-table">
+		<td>Livre/Article</td>
+		<tr><td>{{ ticket_form.title.label }}</td></tr>
+		<tr><td>{{ ticket_form.title }}</td></tr>
+		<tr><td>{{ ticket_form.description.label }}</td></tr>
+		<tr><td>{{ ticket_form.description }}</td></tr>
+		<tr><td>{{ ticket_form.image.label }}</td></tr>
+		<tr><td>{{ ticket_form.image }}</td></tr>
+
 	</table>
 	<table>
-		<td><h4>Critique</h4></td>
-			{{review_form.as_table}}
+		<td>Critique</td>
+		<tr><td>{{ review_form.headline.label }}</td></tr>
+		<tr><td>{{ review_form.headline }}</td></tr>
+		<tr><td>{{ review_form.rating.label }}</td></tr>
+		<tr><td>{{ review_form.rating }}</td></tr>
+		<tr><td>{{ review_form.body.label }}</td></tr>
+		<tr><td>{{ review_form.body }}</td></tr>
 		<tr>
 			<td><input type="submit" name="submit" value="Envoyer"></td>
 	    </tr>

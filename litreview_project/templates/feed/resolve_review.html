@@ -1,21 +1,27 @@
 {% extends '../navigation.html' %}
 {% block resolve %}
-	<p>Vous êtes en train de poster en réponse à</p>
-	<table>
-		{% for ticket in tickets %}
-		<p>{{ticket.user}} a demandé une critique</p>
-		<p>{{ticket.title}}</p>
-		<p>{{ticket.description}}</p>
-		<img src="{{ticket.image}}">
-		{% endfor %}
-	</table>
-	<table>
-		<form method="POST">
-			{% csrf_token %}
-			{{form.as_table}}
-		<td><input type="submit" value="Envoyer"></td>
-		</form>
-	</table>
 
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
+
+<p>Vous êtes en train de poster en réponse à</p>
+<table>
+	{% for ticket in tickets %}
+	<p>{{ticket.user}} a demandé une critique</p>
+	<p>{{ticket.title}}</p>
+	<p>{{ticket.description}}</p>
+	<img src="{{ MEDIA_URL }}{{ticket.image}}">
+	{% endfor %}
+</table>
+
+<table>
+	<form method="POST">
+	{% csrf_token %}
+	{{form.as_table}}
+	<td><input type="submit" value="Envoyer"></td>
+	</form>
+</table>
 
 {% endblock %}

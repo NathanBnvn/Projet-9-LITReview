@@ -1,5 +1,11 @@
 {% extends './base.html' %}
 {% block navigation %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
 <ul class="navigation-bar">
 	<li><a href="{% url 'feed' %}">Flux</a></li>
 	<li><a href="{% url 'posts' %}">Posts</a></li>

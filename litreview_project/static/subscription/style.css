@@ -1,0 +1,59 @@
+
+.subscribe-segment
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-bar
+{
+	min-width: 70vw;
+	min-height: 4vh;
+}
+
+table
+{
+	table-layout: fixed;
+	min-width: 80vw;
+	border-collapse: collapse;
+	border: black solid 1px;
+}
+
+td
+{
+	border: black solid 0.5px;
+}
+
+.td-button 
+{
+	width: 10vw;
+}
+
+.td-button button 
+{
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border: white;
+}
+
+.result-segment
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 70vh;
+}
+
+.following-exist, .ticket-count, .review-count
+{
+	text-align: center;
+}
+
+.following-exist
+{
+	font-size: 12px;
+}

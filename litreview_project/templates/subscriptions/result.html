@@ -1,22 +1,30 @@
 {% extends '../navigation.html' %}
 
 {% block result %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'subscription/style.css' %}">
+</head>
+
+<div class="result-segment">
 	{% if requested_data %}
 	<table class="requested_users">
 		<tr>
 			<th>utilisateur</th>
 			<th>nombre de ticket</th>
 			<th>nombre de critique</th>
+			<th>statut</th>
 		</tr>
 		{% for user in requested_data %}
 			<tr>
-	 			<td>{{ user.0 }}</td>
-	 			<td>{{ user.1 }}</td>
-	 			<td>{{ user.2 }}</td>
+	 			<td class="users">{{ user.0 }}</td>
+	 			<td class="ticket-count">{{ user.1 }}</td>
+	 			<td class="review-count">{{ user.2 }}</td>
 	 			{% if user.3 %}
-	 			<td><p>abonné</p></td>
+	 			<td class="following-exist"><p>abonné</p></td>
 	 			{% else %}
-				<td><button type="button" onclick="location.href='{% url 'subscribe' user.0 %}'">s'abonner</button></td>
+				<td class="td-button"><button type="button" onclick="location.href='{% url 'subscribe' user.0 %}'">s'abonner</button></td>
 				{% endif %}
 			</tr>
 	 	{% endfor %}
@@ -24,4 +32,7 @@
 	{% else %}
 		<p>{{ message }}</p>
 	{% endif %}
+
+</div>
+
 {% endblock%}

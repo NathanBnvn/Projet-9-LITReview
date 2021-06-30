@@ -1,6 +1,11 @@
 {% extends '../navigation.html' %}
 {% block feed %}
 
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
+
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>

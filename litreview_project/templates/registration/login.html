@@ -1,32 +1,28 @@
 {% extends '../base.html' %}
 {% block login %}
 
-<!--   {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'registration/style.css' %}">
+</head>
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %} -->
+<div class="login-segment">
+  <table class="register-link">
+    <th>Inscrivez-vous maintenant</th>
+    <tr>
+      <td><button onclick="window.location='register'">S'inscrire</button></td> 
+    </tr>
+  </table>
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <table>
-    <p>Inscrivez-vous maintenant</p>
-    <button onclick="window.location='register'">S'inscrire</button> 
+  <table class="login-table">
+    <th>Connectez-vous</th>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <tr><td class="td-field">{{ form.username }}</td></tr>
+      <tr><td class="td-field">{{ form.password }}</td></tr>
+      <td class="td-button"><input type="submit" value="Se connecter" name="Connect"/></td>
+    </form>
   </table>
-  
-  <table>
-    <p>Connectez-vous</p>
-      {{ form.as_table }}
-  </table>
-  <br>
-    <input type="submit" value="Se connecter" name="Connect"/>
-</form>
+</div>
 
 {% endblock %}

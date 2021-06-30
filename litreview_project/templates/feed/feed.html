@@ -1,9 +1,16 @@
 {% extends '../navigation.html' %}
 {% block feed %}
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
  
+<div class="feed-segment">
 <button onclick="window.location='creer-ticket'">Demander une critique</button> 
 <button onclick="window.location='creer-critique'">Créer une critique</button> 
 
+<div class="posts-segment">
 {% for post in posts %}
     {% if post.content_type == 'TICKET' %}
         {% include 'snippet/ticket_snippet.html' %}
@@ -21,5 +28,6 @@
 {% endfor %}
 
 <p>{{ message }}</p>
-
+</div>
+</div>
 {% endblock %}

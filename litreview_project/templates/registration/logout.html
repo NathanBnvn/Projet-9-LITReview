@@ -1,10 +1,15 @@
 {% extends '../base.html' %}
 {% block logout %}
 
-<p>Vous êtes bien déconnecté.
-	<br>Comme l'a écrit Lamartine "Un seul être vous manque et tout est dépeuplé",
-alors revenez vite.</p> 
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'registration/style.css' %}">
+</head>
 
-<button onclick="window.location='{% url 'login' %}'">Se reconnecter</button> 
+<div class="logout-segment">
+	<p>Vous êtes bien déconnecté.
+	<br>Comme l'a écrit Lamartine : "Un seul être vous manque et tout est dépeuplé". Revenez vite.</p> 
 
+	<button onclick="window.location='{% url 'login' %}'">Se reconnecter</button> 
+</div>
 {% endblock %}

@@ -1,25 +1,31 @@
 {% extends '../navigation.html' %}
 {% block subscriptions %}
 
-<div class="search-container">
-		<h4>Suivre d'autres utilisateurs</h4>
-    <form action="{% url 'search' %}" method=POST>
-    	{% csrf_token %}
-      <input type="text" placeholder="Nom d'utilisateur" name="search">
-      <button type="submit">Envoyer</button>
-    </form>
-</div>
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'subscription/style.css' %}">
+</head>
 
-<h4>Abonnements</h4>
+<div class="subscribe-segment">
+	<h4>Suivre d'autres utilisateurs</h4>
+	<div class="search-container">    
+    	<form action="{% url 'search' %}" method=POST>
+    		{% csrf_token %}
+      	<input class="search-bar" type="text" placeholder="Nom d'utilisateur" name="search">
+      	<button type="submit">Envoyer</button>
+    	</form>
+	</div>
 
-	{% if followings.exists %}
-		<table class="user-follows" id="following">
+
+<h5>Abonnements</h5>
+{% if followings.exists %}
+	<table class="user-follows" id="following">
 	 	{% for following in followings %}
 			<tr>
-	 			<th>{{ following.user }}</th>			
-				<th>
-					<button type="button" onclick="location.href='{% url 'unsubscribe' following.id %}'">se désabonner</button>
-				</th>
+	 			<td>{{ following.user }}</td>			
+				<td class="td-button">
+					<button type="button" onclick="location.href='{% url 'unsubscribe' following.id %}'">Désabonner</button>
+				</td>
 			</tr>
 	 	{% endfor %}
 	 	</table>
@@ -28,12 +34,12 @@
 	{% endif %}
 
 
-<h4>Abonnés</h4>
-	{% if followers.exists %}
-		<table class="user-follows" id="follower">
+<h5>Abonnés</h5>
+{% if followers.exists %}
+	<table class="user-follows" id="follower">
 		{% for follower in followers %}
 			<tr>
-				<th>{{ follower.followed_user }}</th>
+				<td>{{ follower.followed_user }}</td>
 			</tr>
  		{% endfor %}
  		</table>
@@ -41,5 +47,6 @@
  		<p>Vous n'avez pas encore d'abonnés</p>
  	{% endif %}
 
+</div>
 
 {% endblock %}

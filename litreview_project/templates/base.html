@@ -3,11 +3,13 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title>LITReview</title>
+		{% load static %}
+  		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	</head>
 	<body>
-		<header id="head">
+		<header class="head">
 			<h2>LITReview</h2>
-			{% block navigation %}{% endblock %}
+			
 		</header>
 		
 		<!-- Comentaire-->

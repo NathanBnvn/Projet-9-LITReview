@@ -1,23 +1,26 @@
 {% extends '../base.html' %}
 
 {% block register %}
-	
-     <div class="login">
 
-        <h3>Inscrivez-vous</h3>
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'registration/style.css' %}">
+</head>
 
-         <form method="POST">
-             {% csrf_token %}
-             <table>
-                {{ form.as_table }}
-                 <tr>
-                    <br>
-                    <td><input type="reset" value="Retourner" onclick="window.location='{% url 'login' %}'"></input></td>
-                    <td><input type="submit" name="submit" value="S'inscrire"></td>
-                </tr>
-             </table>
-         </form>
-        
-     </div>
+<div class="register-segment">
+   <table class="register-table">
+      <th>Inscrivez-vous</th>
+
+      <form method="POST">
+      {% csrf_token %}
+      
+      <tr><td class="td-field">{{ form.username }}</td></tr>
+      <tr><td class="td-field">{{ form.password1 }}</td></tr>
+      <tr><td class="td-field">{{ form.password2 }}</td></tr>
+      <tr><td class="td-button"><input type="reset" value="Retourner" onclick="window.location='{% url 'login' %}'"></input>
+         <input type="submit" name="submit" value="S'inscrire"></input></td></tr>
+      </form>
+   </table>
+</div>
 
 {% endblock %}

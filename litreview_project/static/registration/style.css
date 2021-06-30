@@ -1,0 +1,58 @@
+
+.login-segment, .register-segment
+{
+	display: flex;
+	align-items: center;
+}
+
+.login-segment
+{
+	justify-content: space-around;
+	min-height: 50vh;
+}
+
+table, .td-field input
+{
+	text-align: center;
+}
+
+table
+{
+	table-layout: fixed;
+	width: 25vw;
+	border-spacing: 0.4vw 1vh;
+}
+
+.td-button
+{
+	text-align: right;
+}
+
+td
+{
+	height: 3vh;
+}
+
+.td-field input
+{
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.register-segment
+{	
+	justify-content: center;
+	min-height: 60vh;
+}
+
+.logout-segment
+{
+	text-align: center;
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+}
