@@ -7,9 +7,11 @@
   		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	</head>
 	<body>
-		<header class="head">
-			<h2>LITReview</h2>
-			
+		<header>
+			<div class="head">
+				<h2 class="headtitle">LITReview</h2>
+				{% block navigation %}{% endblock %}
+		</div>
 		</header>
 		
 		<!-- Comentaire-->

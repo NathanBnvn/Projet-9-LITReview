@@ -14,7 +14,7 @@ def show_posts(request):
 	tickets = Ticket.objects.filter(user=request.user)
 	tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 	posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
-	return render(request, 'posts/posts.html', {'posts':posts})
+	return render(request, 'posts/posts.html', {'posts':posts, 'range': range(5)})
 
 @login_required
 def update_ticket(request, post_id):

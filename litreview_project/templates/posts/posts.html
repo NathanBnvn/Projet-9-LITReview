@@ -1,17 +1,30 @@
 {% extends '../navigation.html' %}
 
 {% block posts %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
+<p class="headline">Vos posts</p>
+<div class="posts-segment">
 	{% for post in posts %}
 		{% if post.content_type == 'TICKET' %}
 			{% include 'snippet/ticket_snippet.html' with post_view=True %}
-			<button name="update_ticket_button" onclick="window.location='{% url 'update-ticket' post.id %}'">Modifier</button>
-			<button name="delete_ticket_button" onclick="window.location='{% url 'erase-ticket' post.id %}'">Supprimer</button>
+			<div class="button-block">
+				<button name="update_ticket_button" onclick="window.location='{% url 'update-ticket' post.id %}'">Modifier</button>
+				<button name="delete_ticket_button" onclick="window.location='{% url 'erase-ticket' post.id %}'">Supprimer</button>
+			</div>
 		{% elif post.content_type == 'REVIEW' %}
 			{% include 'snippet/review_snippet.html' with post_view=True %}
-			<button name="update_review_button" onclick="window.location='{% url 'update-review' post.id %}'">Modifier</button>
-			<button name="delete_review_button" onclick="window.location='{% url 'erase-review' post.id %}'">Supprimer</button>
+			<div class="button-block">
+				<button name="update_review_button" onclick="window.location='{% url 'update-review' post.id %}'">Modifier</button>
+				<button name="delete_review_button" onclick="window.location='{% url 'erase-review' post.id %}'">Supprimer</button>
+			</div>
 		{% endif %}
 	{% empty %}
 		<p>Vous n'avez pas encore de ticket et de critique</p>
 	{% endfor %}
+</div>
+
 {% endblock %}

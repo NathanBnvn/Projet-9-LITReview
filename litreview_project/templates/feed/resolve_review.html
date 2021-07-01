@@ -6,21 +6,29 @@
   <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
 </head>
 
-<p>Vous êtes en train de poster en réponse à</p>
-<table>
-	{% for ticket in tickets %}
-	<p>{{ticket.user}} a demandé une critique</p>
-	<p>{{ticket.title}}</p>
-	<p>{{ticket.description}}</p>
-	<img src="{{ MEDIA_URL }}{{ticket.image}}">
-	{% endfor %}
-</table>
+<p class=headline>Créer une critique</p>
+<div class="ticket-block">
+	<p>Vous êtes en train de poster en réponse à</p>
+	<table class="show-ticket">
+		{% for ticket in tickets %}
+		<tr><td><p>{{ticket.user}} a demandé une critique</p></td></tr>
+		<tr><td><p>{{ticket.title}}</p></td></tr>
+		<tr><td><p>{{ticket.description}}</p></td></tr>
+		<tr><td><img src="{{ MEDIA_URL }}{{ticket.image}}"></td></tr>
+		{% endfor %}
+	</table>
+</div>
 
-<table>
+<table class="review-form-table">
 	<form method="POST">
 	{% csrf_token %}
-	{{form.as_table}}
-	<td><input type="submit" value="Envoyer"></td>
+	<tr><td class="form-content">{{ form.headline.label }}</td></tr>
+	<tr><td class="form-content">{{ form.headline }}</td></tr>
+	<tr><td class="form-content">{{ form.rating.label }}</td></tr>
+	<tr><td class="form-content">{{ form.rating }}</td></tr>
+	<tr><td class="form-content">{{ form.body.label }}</td></tr>
+	<tr><td class="form-content body">{{ form.body }}</td></tr>
+	<td class="input-submit"><input type="submit" value="Envoyer"></td>
 	</form>
 </table>
 

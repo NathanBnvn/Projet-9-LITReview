@@ -1,8 +1,86 @@
 
-.feed-segment
+.feed-segment, .posts-segment
 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	background-color: red;
+	margin-top: 10vh;
+	margin-right: 10vw;
+	margin-left: 10vw;
+	padding-left: 15px;
+	padding-right: 15px;
 }
+
+.feed-buttons
+{
+	display: flex;
+	justify-content: space-around;
+	min-height: 3.5vh;
+	margin-bottom: 3vh;
+}
+
+.headline
+{
+	text-align: center;
+	padding-top: 2vh;
+}
+
+.review-form-table, .show-ticket, .ticket-block
+{
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	border: black solid 1px;
+	width: 90vw;
+}
+
+.show-ticket
+{
+	width: 60vw;
+	margin-bottom: 2vh;
+}
+
+.ticket-table
+{
+	border: none;
+}
+
+.input-submit, .button-block
+{
+	text-align: right;
+}
+
+.form-content, .input-submit, .button-block
+{
+	padding-bottom: 1vh;
+	padding-right: 4vw;
+	padding-left: 4vw;
+	padding-top: 1vh;
+}
+
+.input-submit
+{
+	padding-top: 4vh;
+}
+
+.form-content input, .form-content textarea
+{
+	width: 100%;
+}
+
+.body
+{
+	height: 10vh;
+}
+
+.body input
+{
+	height: 100%;
+}
+
+img
+{
+	width: 15vw;
+	height: auto;
+}
+

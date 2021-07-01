@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'snippet/style.css' %}">
 <!-- Font Awesome Icon Library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <div class='review'>
-	<table>
-	<p>{{post.time_created}}</p>
 	
 	{% if post.user == request.user %}
-		<p>vous avez publié une critique</p>
+		<p class="author-tag inline">vous avez publié une critique</p>
 	{% else %}
-		<p>{{ post.user }} a publié une critique</p>
+		<p class="author-tag inline">{{ post.user }} a publié une critique</p>
 	{% endif %}
 	
+	<p class="date-tag inline">{{post.time_created}}</p>
+
 	<p>{{ post.headline}} - 
 		{% for n in range %}
 			{% if n < post.rating %}
@@ -25,25 +29,22 @@
 		{% endfor %}
 	</p>
 	<!-- A mettre dans un CSS -->
-	<style>
-	.checked {
-  		color: orange;
-		}
-	</style>
 
 	<p>{{ post.body }}</p>
 	
 	{% if post.ticket %}
-		{% if post.ticket.user == request.user %}
-			<p>Ticket - Vous</p>
-		{% else %}
-			<p>Ticket - {{ post.ticket.user }}</p>
-		{% endif %}
+		<div class="ticket">
+			{% if post.ticket.user == request.user %}
+				<p class="author-tag inline">Ticket - Vous</p>
+			{% else %}
+				<p class="author-tag inline">Ticket - {{ post.ticket.user }}</p>
+			{% endif %}
 
-		<p>{{ post.ticket.title }}</p>
-		<p>{{ post.ticket.description }}</p>
-		<img src="{{ MEDIA_URL }}{{ post.ticket.image }}"><br>
+			<p>{{ post.ticket.title }}</p>
+			<p>{{ post.ticket.description }}</p>
+			<img src="{{ MEDIA_URL }}{{ post.ticket.image }}"><br>
+		</div>
 	{% endif %}
 
-	</table>
 </div>
+</html>

@@ -1,26 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'snippet/style.css' %}">
+</head>
+
 <div class='ticket'>
-	<table>
+
 	{% if post_view is True %}
 		{% if post.user == request.user %}
-			<p>vous avez publié un ticket</p>
+			<p class="author-tag inline">vous avez publié un ticket</p>
 		{% else %}
-			<p>Ticket - {{ post.user }}</p>
+			<p class="author-tag inline">Ticket - {{ post.user }}</p>
 		{% endif %}
-		<p>{{post.time_created}}</p>
+		<p class="date-tag inline">{{ post.time_created }}</p>
 		<p>{{ post.title }}</p>
 		<p>{{ post.description }} <br>
 		<img src="{{ MEDIA_URL }}{{ post.image }}"><br></p>
 	{% else %}
+		<p class="date-tag inline">{{ post.time_created }}</p>
 		{% if post.user == request.user %}
-			<p>vous avez demandé une critique</p>
+			<p class="author-tag inline">vous avez demandé une critique</p>
 		{% else %}
-			<p>{{ post.user }} a demandé une critique</p>
+			<p class="author-tag inline">{{ post.user }} a demandé une critique</p>
 		{% endif %}
 
 		<p>{{ post.title }} <br>
 		{{ post.description }}</p>
 		<img src="{{ MEDIA_URL }}{{ post.image }}">
+		{% for tickets in resolve_ticket_id %}
+            {% for ticket in tickets %}
+                {% if ticket.id != post.id %}
+                <div class="button-block">
+                    <button name="create_review_button" onclick="window.location='{% url 'respond-review' post.id %}'">Créer une critique</button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
 
 	{% endif %}
-	</table>
 </div>
+</html>

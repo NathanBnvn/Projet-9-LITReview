@@ -2,32 +2,37 @@ body, html
 {
 	margin: 0;
 	color: black;
-	font-size: 15pt;
+	font-size: 13pt;
 	font-family: 'montserrat';
 }
 
 .head
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: orangered;
+}
+
+.headtitle
 {
 	text-align: center;
 }
 
 .navigation-bar
 {
-	display: inline;
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	align-items: right;
 }
 
 li
 {
-	float: right;
+	display: inline;
 }
 
-li a {
-	display: block;
-	padding: 1.5vw;
+li a 
+{
+	padding: 1vw;
 	color: black;
-  	text-align: center;
   	text-decoration: none;
 }

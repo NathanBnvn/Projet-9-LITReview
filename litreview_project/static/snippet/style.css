@@ -1,0 +1,19 @@
+
+.ticket, .review
+{
+	border: black solid 1px;
+	padding: 5px;
+	margin-top: 2vh;
+	margin-bottom: 2vh;
+}
+
+.inline
+{
+	display: inline-block;
+	margin-right: 28%;
+}
+
+.checked 
+{
+  	color: red;
+}
