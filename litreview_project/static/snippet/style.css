@@ -10,7 +10,14 @@
 .inline
 {
 	display: inline-block;
-	margin-right: 28%;
+	vertical-align: top;
+}
+
+.date-tag
+{
+	position: relative;
+	float: right;
+	margin-right: 3px;
 }
 
 .checked 

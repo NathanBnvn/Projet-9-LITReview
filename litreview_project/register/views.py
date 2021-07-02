@@ -19,6 +19,15 @@ def register(request):
 			return redirect(settings.LOGIN_REDIRECT_URL, request.path)
 	else:
 		form = UserCreationForm()
+		form.fields['username'].widget.attrs.update({
+			'placeholder': "Nom d'utilisateur"
+			})
+		form.fields['password1'].widget.attrs.update({
+			'placeholder': "Mot de passe"
+			})
+		form.fields['password2'].widget.attrs.update({
+			'placeholder': "Confirmer mot de passe"
+			})
 	return render(request, 'registration/register.html', {'form': form})
 
 

@@ -8,30 +8,36 @@ body, html
 
 .head
 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: orangered;
+	width: 100%;
+	position: relative;
+}
+
+.aline
+{
+	display: inline-block;
 }
 
 .headtitle
 {
-	text-align: center;
+	margin-left: 50%;
 }
 
 .navigation-bar
 {
-	list-style-type: none;
-	align-items: right;
+	position: absolute;
+	margin-left: 12vw;
+	margin-right: 1vw;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 29vw;
+	height: 55px;
+	font-size: 14px;
 }
 
-li
+.navigation-bar a
 {
-	display: inline;
-}
-
-li a 
-{
+	float: left;
+	text-align: center;
 	padding: 1vw;
 	color: black;
   	text-decoration: none;

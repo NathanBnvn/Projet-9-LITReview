@@ -18,13 +18,12 @@
 		<p>{{ post.description }} <br>
 		<img src="{{ MEDIA_URL }}{{ post.image }}"><br></p>
 	{% else %}
-		<p class="date-tag inline">{{ post.time_created }}</p>
 		{% if post.user == request.user %}
 			<p class="author-tag inline">vous avez demandé une critique</p>
 		{% else %}
 			<p class="author-tag inline">{{ post.user }} a demandé une critique</p>
 		{% endif %}
-
+		<p class="date-tag inline">{{ post.time_created }}</p>
 		<p>{{ post.title }} <br>
 		{{ post.description }}</p>
 		<img src="{{ MEDIA_URL }}{{ post.image }}">

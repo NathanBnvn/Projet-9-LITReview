@@ -29,6 +29,7 @@ td
 .td-button 
 {
 	width: 10vw;
+
 }
 
 .td-button button 
@@ -37,6 +38,7 @@ td
 	height: 100%;
 	background-color: white;
 	border: white;
+	cursor: pointer;
 }
 
 .result-segment

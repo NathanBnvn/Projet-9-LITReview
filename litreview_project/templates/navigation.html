@@ -6,11 +6,11 @@
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 
-<ul class="navigation-bar inline">
-	<li><a href="{% url 'feed' %}">Flux</a></li>
-	<li><a href="{% url 'posts' %}">Posts</a></li>
-	<li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
-	<li><a href="{% url 'logout' %}">Se déconnecter</a></li>
-</ul>
+<div class="navigation-content">
+	<a href="{% url 'feed' %}">Flux</a>
+	<a href="{% url 'posts' %}">Posts</a>
+	<a href="{% url 'subscriptions' %}">Abonnements</a>
+	<a href="{% url 'logout' %}">Se déconnecter</a>
+</div>
 
 {% endblock %}

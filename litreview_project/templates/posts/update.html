@@ -39,7 +39,7 @@
         <tr><td class="form-content">{{ form.description.label }}</td></tr>
         <tr><td class="form-content">{{ form.description }}</td></tr>
         <tr><td class="form-content">{{ form.image.label }}</td></tr>
-<!--         <tr><td class="form-content"><img src="{{ MEDIA_URL }}{{ form.image.instance.url }}"></td></tr> -->
+		<tr><td class="form-content"><img src="{{ form.image.value.url }}"></td></tr>
         <tr><td class="form-content">{{ form.image }}</td></tr>
 		<tr><td class="input-submit"><input type="submit" value="Envoyer"></td></tr>
 	</form>
