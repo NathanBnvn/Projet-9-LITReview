@@ -9,9 +9,9 @@ L'idée étant de réaliser un MVP fonctionnel avec une certaine sobriété styl
 
 ### Pré-requis
 
-Python 
-Django 3.2.4
-Pillow 8.2.0
+Python,   
+Django 3.2.4,   
+Pillow 8.2.0,   
 
 N'hésitez pas à vérifier le fichier requirements.txt qui se trouve dans le dossier du projet 
 pour plus de précision
