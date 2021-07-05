@@ -19,13 +19,18 @@
 	</table>
 </div>
 
-<table class="review-form-table">
+<table class="form-table review-form">
 	<form method="POST">
 	{% csrf_token %}
 	<tr><td class="form-content">{{ form.headline.label }}</td></tr>
 	<tr><td class="form-content">{{ form.headline }}</td></tr>
 	<tr><td class="form-content">{{ form.rating.label }}</td></tr>
-	<tr><td class="form-content">{{ form.rating }}</td></tr>
+	<tr><td>
+		<ul class="rating">
+			{% for choice in form.rating %}
+			<li>{{ choice.tag }} {{ choice.choice_label }}</li>
+			{% endfor %}
+		</ul></td></tr>
 	<tr><td class="form-content">{{ form.body.label }}</td></tr>
 	<tr><td class="form-content body">{{ form.body }}</td></tr>
 	<td class="input-submit"><input type="submit" value="Envoyer"></td>

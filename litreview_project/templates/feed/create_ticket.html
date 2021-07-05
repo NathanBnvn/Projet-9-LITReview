@@ -11,7 +11,7 @@
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <table class="review-form-table ticket-table">
+    <table class="form-table ticket-table">
         <tr><td class=headline>Créer un ticket</td></tr>
         <tr><td class="form-content">{{ form.title.label }}</td></tr>
         <tr><td class="form-content">{{ form.title }}</td></tr>

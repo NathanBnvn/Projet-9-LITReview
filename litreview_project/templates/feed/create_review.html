@@ -10,7 +10,7 @@
 <p class=headline>Créer une critique</p>
 <form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<table class="review-form-table">
+	<table class="form-table">
 		<td>Livre/Article</td>
 		<tr><td class="form-content">{{ ticket_form.title.label }}</td></tr>
 		<tr><td class="form-content">{{ ticket_form.title }}</td></tr>
@@ -19,12 +19,17 @@
 		<tr><td class="form-content">{{ ticket_form.image.label }}</td></tr>
 		<tr><td class="form-content">{{ ticket_form.image }}</td></tr>
 	</table>
-	<table class="review-form-table">
+	<table class="form-table review-form">
 		<td>Critique</td>
 		<tr><td class="form-content">{{ review_form.headline.label }}</td></tr>
 		<tr><td class="form-content">{{ review_form.headline }}</td></tr>
 		<tr><td class="form-content">{{ review_form.rating.label }}</td></tr>
-		<tr><td class="form-content">{{ review_form.rating }}</td></tr>
+		<tr><td>
+			<ul class="rating">
+			{% for choice in review_form.rating %}
+			<li>{{ choice.tag }} {{ choice.choice_label }}</li>
+			{% endfor %}
+		</ul></td></tr>
 		<tr><td class="form-content">{{ review_form.body.label }}</td></tr>
 		<tr><td class="form-content body">{{ review_form.body }}</td></tr>
 		<tr>
