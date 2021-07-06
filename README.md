@@ -9,25 +9,41 @@ L'idée étant de réaliser un MVP fonctionnel avec une certaine sobriété styl
 
 ### Pré-requis
 
+Créez un environnement virtuel
+On Mac & Linux :
+```bash
+    $ python -m venv env
+    $ source env/bin/activate
+
+```
+On Windows :
+```bash
+    py -m venv env
+    .\env\Scripts\activate
+
+```
+
 Python   
 Django 3.2.4   
 Pillow 8.2.0   
 
-N'hésitez pas à vérifier le fichier requirements.txt qui se trouve dans le dossier du projet 
-pour plus de précision
+Pour plus de faciliter installer les modules nécessaires:
+```bash
+  $ pip install requirement.txt
+```
 
 ### Installation
 
 Télécharger le projet depuis github
 ```bash
-git clone https://github.com/NathanBnvn/Projet-9-LITReview.git
+  $ git clone https://github.com/NathanBnvn/Projet-9-LITReview.git
 
 ```
 
 ### Démarrage
 
 ```bash
-python manage.py runserver
+  $ python manage.py runserver
 ```
 
 Le site n'est pas hébergé et fonctionne en local.
