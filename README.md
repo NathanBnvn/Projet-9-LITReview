@@ -7,6 +7,14 @@ Ce projet est un site web rassemblant une communauté d'utilisateurs pouvant éc
 Les utilisateurs peuvent demander ou rédiger des critiques. Le site n'est accessible qu'au inscrit.
 L'idée étant de réaliser un MVP fonctionnel avec une certaine sobriété stylistique. 
 
+### Télécharger
+
+Télécharger le projet depuis github
+```bash
+  $ git clone https://github.com/NathanBnvn/Projet-9-LITReview.git
+
+```
+
 ### Pré-requis
 
 Créez un environnement virtuel
@@ -32,13 +40,6 @@ Pour plus de faciliter installer les modules nécessaires:
   $ pip install requirement.txt
 ```
 
-### Installation
-
-Télécharger le projet depuis github
-```bash
-  $ git clone https://github.com/NathanBnvn/Projet-9-LITReview.git
-
-```
 
 ### Démarrage
 
