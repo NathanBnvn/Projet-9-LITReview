@@ -1,0 +1,38 @@
+{% extends '../navigation.html' %}
+
+{% block profil %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'profil/style.css' %}">
+</head>
+
+<p class="headline">Ma liste de souhait</p>
+{% if books %}
+	<table class="wishtable">
+		{% for book in books %}
+		<tr>
+			<td class="td-content td-image"><img class="cover" src="{{ MEDIA_URL }}{{ book.image }}"></td>
+			<td class="td-content"><p><strong>{{ book.title }}</strong> - {{ book.author }}<br><br>
+				<small>{{ book.summary }}</small>
+			</p></td>
+			<td class="td-button">
+				<button name="update_book_button" onclick="window.location='{% url 'update_book' book.id %}'">Modifier</button>
+				<button name="delete_book_button" onclick="window.location='{% url 'unlisted' book.id %}'">Supprimer</button>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p class="headline">{{ message }}</p>
+	{% endif %}
+	<div class="button-block book-block">
+		<button class="button" name="add_book_button" onclick="window.location='{% url 'listed' %}'">Ajouter un livre</button>
+	</div>
+	
+	<p class="headline danger">Danger Zone</p>
+	<div class="button-block danger-block">
+		<button class="button" name="delete_user_button" onclick="window.location='{% url 'erase_user' %}'">Supprimer mon compte</button>
+	</div>
+
+{% endblock %}

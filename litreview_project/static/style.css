@@ -19,26 +19,32 @@ body, html
 
 .headtitle
 {
-	margin-left: 50%;
+	font-size: 1.6vw;
+	margin-left: 46%;
+}
+
+.headtitle, .navigation-bar
+{
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 .navigation-bar
 {
 	position: absolute;
-	margin-left: 12vw;
+	padding-left: 10vw;
+	margin-left: 6vw;
 	margin-right: 1vw;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	width: 29vw;
+	width: 28vw;
 	height: 55px;
-	font-size: 14px;
+	font-size: 1vw;
 }
 
 .navigation-bar a
 {
 	float: left;
 	text-align: center;
-	padding: 1vw;
+	padding: 0.5vw;
 	color: black;
   	text-decoration: none;
 }

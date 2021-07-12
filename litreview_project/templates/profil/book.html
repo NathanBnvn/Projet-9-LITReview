@@ -1,0 +1,29 @@
+{% extends '../navigation.html' %}
+
+{% block profil %}
+
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'feed/style.css' %}">
+</head>
+
+<p class=headline>Ajouter un livre à ma liste</p>
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table class="form-table">
+		<td>Livre/Article</td>
+		<tr><td class="form-content">{{ form.title.label }}</td></tr>
+		<tr><td class="form-content">{{ form.title }}</td></tr>
+		<tr><td class="form-content">{{ form.author.label }}</td></tr>
+		<tr><td class="form-content">{{ form.author }}</td></tr>
+		<tr><td class="form-content">{{ form.summary.label }}</td></tr>
+		<tr><td class="form-content">{{ form.summary }}</td></tr>
+		<tr><td class="form-content">{{ form.image.label }}</td></tr>
+		<tr><td class="form-content">{{ form.image }}</td></tr>
+		<tr>
+			<td class="input-submit"><input type="submit" name="submit" value="Ajouter"></td>
+	    </tr>
+	</table>
+</form>
+
+{% endblock %}
