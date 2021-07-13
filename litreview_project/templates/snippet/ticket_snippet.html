@@ -27,15 +27,12 @@
 		<p>{{ post.title }} <br>
 		{{ post.description }}</p>
 		<img src="{{ MEDIA_URL }}{{ post.image }}">
-		{% for tickets in resolve_ticket_id %}
-        {% for ticket in tickets %}
-            {% if ticket.id != post.id %}
+
+        {% if post.id not in resolve_tickets %}
             <div class="button-block">
                 <button name="create_review_button" onclick="window.location='{% url 'respond-review' post.id %}'">Créer une critique</button>
             </div>
-            {% endif %}
-           	{% endfor %}
-        {% endfor %}
+        {% endif %}
 
 	{% endif %}
 </div>

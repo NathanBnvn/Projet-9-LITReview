@@ -42,10 +42,10 @@
 		<p>{{ post.ticket.description }}</p>
 		<img src="{{ MEDIA_URL }}{{ post.ticket.image }}"><br>
 
-		{% if post.ticket.user != request.user %}
-		<div class="button-block">
-            <button name="create_book_button" onclick="window.location='{% url 'wishlist' post.ticket.id %}'">Enregistrer ce livre</button>
-        </div>
+		{% if post.ticket.id not in wishlisted_reviews %}
+			<div class="button-block">
+            	<button name="create_book_button" onclick="window.location='{% url 'wishlist' post.ticket.id %}'">Enregistrer ce livre</button>
+        	</div>
         {% endif %}
 	</div>
 

@@ -61,16 +61,11 @@
 	padding-right: 1vw;
 	padding-left: 1vw;
 	padding-top: 1vh;
-	text-align: right;
+	text-align: center;
 }
 
 .book-block
 {
-	margin-right: 6.5vw;
 	margin-top: 20px;
 }
 
-.danger-block
-{
-	text-align: center;
-}

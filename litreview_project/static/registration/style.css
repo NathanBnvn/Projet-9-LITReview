@@ -49,6 +49,7 @@ td
 .logout-segment
 {
 	text-align: center;
+	width: 80vw;
 	margin: 0;
   	position: absolute;
   	top: 50%;
