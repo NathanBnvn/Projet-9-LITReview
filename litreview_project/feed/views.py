@@ -47,13 +47,12 @@ def get_wishlisted_reviews(request):
 @login_required
 def feed(request):
     reviews = get_users_viewable_reviews(request)
-    reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
     tickets = get_users_viewable_tickets(request)
-    tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
-    if tickets.exists() or reviews.exists():
+    if tickets or reviews:
+        reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
+        tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
         resolve_tickets = get_responded_tickets(request)
         wishlisted_reviews = get_wishlisted_reviews(request)
-        print(wishlisted_reviews)
         posts = sorted(
             chain(tickets, reviews),
             key=lambda post: post.time_created,
