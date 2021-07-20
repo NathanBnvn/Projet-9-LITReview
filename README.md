@@ -18,13 +18,13 @@ Télécharger le projet depuis github
 ### Pré-requis
 
 Créez un environnement virtuel
-On Mac & Linux :
+sous Mac & Linux :
 ```bash
     $ python -m venv env
     $ source env/bin/activate
 
 ```
-On Windows :
+sous Windows :
 ```bash
     py -m venv env
     .\env\Scripts\activate
