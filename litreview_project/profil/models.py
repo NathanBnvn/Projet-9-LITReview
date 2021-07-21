@@ -9,5 +9,5 @@ class Book(models.Model):
 	summary = models.TextField(max_length=2048, blank=True)
 	image = models.ImageField(null=True, blank=True, upload_to="images/")
 	user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	ticket_id = models.IntegerField(blank=True)
+	ticket_id = models.IntegerField(blank=True, null=True)
 	time_created = models.DateTimeField(auto_now_add=True)

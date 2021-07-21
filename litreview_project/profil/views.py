@@ -44,6 +44,7 @@ def create_book(request):
         if form.is_valid():
             book = form.save(commit=False)
             book.user = request.user
+            book.ticket_id = None
             book.save()
             return redirect("profil")
     else:
