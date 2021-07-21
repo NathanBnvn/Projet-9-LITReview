@@ -8,12 +8,13 @@ from .forms import TicketForm, ReviewForm
 
 # Create your views here.
 
+
 def get_users_viewable_reviews(request):
     user_reviews = Review.objects.filter(user=request.user)
     followings = UserFollow.objects.filter(followed_user=request.user)
     for following in followings:
         following_user_reviews = Review.objects.filter(user=following.user)
-        reviews =  user_reviews | following_user_reviews
+        reviews = user_reviews | following_user_reviews
         return reviews
 
 
@@ -22,7 +23,7 @@ def get_users_viewable_tickets(request):
     followings = UserFollow.objects.filter(followed_user=request.user)
     for following in followings:
         following_user_tickets = Ticket.objects.filter(user=following.user)
-        tickets =  user_tickets | following_user_tickets
+        tickets = user_tickets | following_user_tickets
         return tickets
 
 
@@ -31,11 +32,16 @@ def get_responded_tickets(request):
     resolve_tickets_id = []
     tickets_id = []
     for review in reviews:
-        resolve_tickets = Ticket.objects.filter(id=review.ticket.id).values_list('pk', flat=True)
+        resolve_tickets = Ticket.objects.filter(
+            id=review.ticket.id
+            ).values_list(
+                'pk', flat=True
+                )
         resolve_tickets_id.append(resolve_tickets)
     for ticket_id in resolve_tickets_id:
         tickets_id.append(ticket_id[0])
     return tickets_id
+
 
 def get_wishlisted_reviews(request):
     books = Book.objects.filter(user=request.user)
@@ -43,6 +49,7 @@ def get_wishlisted_reviews(request):
     for book in books:
         wishlisted_reviews_id.append(book.ticket_id)
     return wishlisted_reviews_id
+
 
 @login_required
 def feed(request):
@@ -69,7 +76,9 @@ def feed(request):
             },
         )
     else:
-        message = "Il n'y a pas encore de critiques ou de tickets dans votre flux."
+        message = (
+            "Il n'y a pas encore de critiques ou de tickets dans votre flux."
+            )
         return render(
             request,
             "feed/feed.html",
@@ -120,11 +129,12 @@ def create_review(request):
 @login_required
 def respond_review(request, post_id):
     tickets = Ticket.objects.filter(id=post_id)
+    print(tickets[0])
     if request.method == "POST":
-        form = ReviewForm(request)
+        form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
-            review.ticket = tickets[0].id
+            review.ticket = tickets[0]
             review.user = request.user
             review.save()
             return redirect("feed")

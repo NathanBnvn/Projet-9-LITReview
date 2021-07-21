@@ -7,10 +7,11 @@ from .models import Book
 
 # Create your views here.
 
+
 @login_required
 def profil(request):
 	books = Book.objects.filter(user=request.user).order_by('-time_created')
-	if books.exists():
+	if books:
 		return render(request, 'profil/profil.html', {'books': books})
 	else:
 		message = "Vous n'avez pas encore de livre dans votre list de souhait"
@@ -21,8 +22,9 @@ def profil(request):
 def wishlisted(request, ticket_id):
 	ticket = Ticket.objects.get(pk=ticket_id)
 	new_book = Book(
-		title=ticket.title, author="auteur non renseigné", summary="aucun résumé",
-		image=ticket.image, user=request.user, ticket_id=ticket_id,
+		title=ticket.title, author="auteur non renseigné",
+		summary="aucun résumé", image=ticket.image,
+		user=request.user, ticket_id=ticket_id,
 		)
 	new_book.save()
 	return redirect("profil")
@@ -33,6 +35,7 @@ def delete_book(request, book_id):
 	book = Book.objects.get(pk=book_id)
 	book.delete()
 	return redirect("profil")
+
 
 @login_required
 def create_book(request):
@@ -45,7 +48,8 @@ def create_book(request):
             return redirect("profil")
     else:
         form = BookForm()
-    return render(request, "profil/book.html", {"form": form})    
+    return render(request, "profil/book.html", {"form": form})
+
 
 @login_required
 def update_book(request, book_id):
@@ -54,11 +58,11 @@ def update_book(request, book_id):
 	if form.is_valid():
 		form.save()
 		return redirect("profil")
-	return render(request, "profil/book.html", {"form": form })
+	return render(request, "profil/book.html", {"form": form})
 
 
 @login_required
 def delete_user(request):
  	user = User.objects.get(username=request.user)
- 	#user.delete()
+ 	user.delete()
  	return redirect("logout")

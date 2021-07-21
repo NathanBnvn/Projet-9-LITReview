@@ -27,7 +27,10 @@ class ReviewForm(forms.ModelForm):
             "body": ("Commentaire"),
         }
         widgets = {
-            "rating": forms.RadioSelect(choices=CHOICES, attrs={"display": "inline"}),
+            "rating": forms.RadioSelect(
+                choices=CHOICES, 
+                attrs={"display": "inline"}
+                ),
         }
 
 

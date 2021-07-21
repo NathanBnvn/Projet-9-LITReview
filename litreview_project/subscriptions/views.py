@@ -24,29 +24,43 @@ def subscriptions(request):
 def search(request):
     if request.method == "POST":
         query = request.POST.get("search")
-        requested_users = User.objects.filter(username__icontains=query).exclude(
-            username=request.user
-        )
+        requested_users = User.objects.filter(
+            username__icontains=query
+            ).exclude(
+                username=request.user
+                )
         if requested_users.exists():
             tickets_count = [
-                Ticket.objects.filter(user=user).count() for user in requested_users
+                Ticket.objects.filter(user=user).count()
+                for user in requested_users
             ]
             reviews_count = [
-                Review.objects.filter(user=user).count() for user in requested_users
+                Review.objects.filter(user=user).count()
+                for user in requested_users
             ]
             following = [
-                UserFollow.objects.filter(followed_user=request.user).filter(user=user)
+                UserFollow.objects.filter(
+                    followed_user=request.user
+                        ).filter(
+                            user=user
+                        )
                 for user in requested_users
             ]
             requested_data = list(
                 zip(requested_users, tickets_count, reviews_count, following)
             )
             return render(
-                request, "subscriptions/result.html", {"requested_data": requested_data}
+                request,
+                "subscriptions/result.html",
+                {"requested_data": requested_data}
             )
         else:
             message = "Personne ne correspond à votre recherche"
-            return render(request, "subscriptions/result.html", {"message": message})
+            return render(
+                request,
+                "subscriptions/result.html",
+                {"message": message}
+                )
 
 
 @login_required

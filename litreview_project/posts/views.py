@@ -15,21 +15,36 @@ def show_posts(request):
     tickets = Ticket.objects.filter(user=request.user)
     tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
     posts = sorted(
-        chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
     )
-    return render(request, "posts/posts.html", {"posts": posts, "range": range(5)})
+    return render(
+        request,
+        "posts/posts.html",
+        {"posts": posts, "range": range(5)}
+        )
 
 
 @login_required
 def update_ticket(request, post_id):
     review_view = False
     ticket = Ticket.objects.get(pk=post_id)
-    form = TicketForm(request.POST or None, request.FILES or None, instance=ticket)
+    form = TicketForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=ticket
+        )
     if form.is_valid():
         form.save()
         return redirect("posts")
     return render(
-        request, "posts/update.html", {"form": form, "review_view": review_view}
+        request,
+        "posts/update.html",
+        {
+            "form": form,
+            "review_view": review_view
+        }
     )
 
 
@@ -45,7 +60,11 @@ def update_review(request, post_id):
     return render(
         request,
         "posts/update.html",
-        {"form": form, "ticket": ticket, "review_view": review_view},
+        {
+            "form": form,
+            "ticket": ticket,
+            "review_view": review_view
+        },
     )
 
 

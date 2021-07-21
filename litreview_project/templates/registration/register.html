@@ -7,6 +7,13 @@
   <link rel="stylesheet" type="text/css" href="{% static 'registration/style.css' %}">
 </head>
 
+
+{% if error_message %}
+
+   <div class="register-segment"><p>{{ error_message }}</p></div>
+
+{% else %}
+
 <div class="register-segment">
    <table class="register-table">
       <th>Inscrivez-vous</th>
@@ -18,9 +25,11 @@
       <tr><td class="td-field">{{ form.password1 }}</td></tr>
       <tr><td class="td-field">{{ form.password2 }}</td></tr>
       <tr><td class="td-button"><input type="reset" value="Retourner" onclick="window.location='{% url 'login' %}'"></input>
-         <input type="submit" name="submit" value="S'inscrire"></input></td></tr>
+         <input type="submit" value="S'inscrire"></input></td></tr>
       </form>
    </table>
 </div>
+
+{% endif %}
 
 {% endblock %}
