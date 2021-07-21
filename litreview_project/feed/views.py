@@ -9,22 +9,28 @@ from .forms import TicketForm, ReviewForm
 # Create your views here.
 
 
-def get_users_viewable_reviews(request):
-    user_reviews = Review.objects.filter(user=request.user)
+def get_following_users(request):
+    following_users = []
     followings = UserFollow.objects.filter(followed_user=request.user)
     for following in followings:
-        following_user_reviews = Review.objects.filter(user=following.user)
-        reviews = user_reviews | following_user_reviews
-        return reviews
+        following_users.append(following.user)
+    return following_users
+
+
+def get_users_viewable_reviews(request):
+    following_users = get_following_users(request)
+    user_reviews = Review.objects.filter(user=request.user)
+    following_user_reviews = Review.objects.filter(Q(user__in=following_users))
+    reviews = user_reviews | following_user_reviews
+    return reviews
 
 
 def get_users_viewable_tickets(request):
     user_tickets = Ticket.objects.filter(user=request.user)
-    followings = UserFollow.objects.filter(followed_user=request.user)
-    for following in followings:
-        following_user_tickets = Ticket.objects.filter(user=following.user)
-        tickets = user_tickets | following_user_tickets
-        return tickets
+    following_users = get_following_users(request)
+    following_user_tickets = Ticket.objects.filter(Q(user__in=following_users))
+    tickets = user_tickets | following_user_tickets
+    return tickets
 
 
 def get_responded_tickets(request):
@@ -129,7 +135,6 @@ def create_review(request):
 @login_required
 def respond_review(request, post_id):
     tickets = Ticket.objects.filter(id=post_id)
-    print(tickets[0])
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
