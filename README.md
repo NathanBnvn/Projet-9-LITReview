@@ -1,5 +1,7 @@
 # Projet: 9 LITReview
-[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com) 
+
+![openclassrooms-project](https://user-images.githubusercontent.com/45998296/166692502-a22abdc0-e774-4ec6-8d7c-f86cb6e55825.svg)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com) ![use-django](https://user-images.githubusercontent.com/45998296/209819884-4217d17c-916b-4ed6-8469-85bfcaf13bcb.svg) [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com) 
 
 ![alt text](https://images.unsplash.com/photo-1614188045365-d939ecc018d0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)
 
